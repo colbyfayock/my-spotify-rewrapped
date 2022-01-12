@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { getSecrets } from '@netlify/functions';
 
 import Layout from '@components/Layout';
 import Container from '@components/Container';
@@ -92,4 +93,11 @@ export default function Home() {
       </Container>
     </Layout>
   )
+}
+
+export async function getStaticProps() {
+  const secrets = await getSecrets();
+  return {
+    props: {}
+  }
 }
