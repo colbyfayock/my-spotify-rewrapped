@@ -6,7 +6,7 @@ import Container from '@components/Container';
 
 import styles from '@styles/Home.module.scss'
 
-export default function Home() {
+export default function Home({ artists, tracks }) {
   return (
     <Layout>
       <Head>
@@ -20,75 +20,33 @@ export default function Home() {
         <h2 className={styles.heading}>Top Artists</h2>
 
         <ul className={styles.items}>
-          <li>
-            <a href="https://www.blink182.com/">
-              <img width="280" src="/images/blink-182.jpg" alt="Artist Photo" />
-              <p className={styles.itemTitle}>
-                blink-182
-              </p>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.blink182.com/">
-              <img width="280" src="/images/blink-182.jpg" alt="Artist Photo" />
-              <p className={styles.itemTitle}>
-                blink-182
-              </p>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.blink182.com/">
-              <img width="280" src="/images/blink-182.jpg" alt="Artist Photo" />
-              <p className={styles.itemTitle}>
-                blink-182
-              </p>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.blink182.com/">
-              <img width="280" src="/images/blink-182.jpg" alt="Artist Photo" />
-              <p className={styles.itemTitle}>
-                blink-182
-              </p>
-            </a>
-          </li>
+          {artists.map(artist => {
+            return (
+              <a key={artist.id} href={artist.external_urls.spotify} className={styles.card}>
+                {artist.images[0] && (
+                  <img width={artist.images[0].width} height={artist.images[0].height} src={artist.images[0].url} alt="" />
+                )}
+                <h2>{ artist.name }</h2>
+              </a>
+            );
+          })}
         </ul>
 
         <h2 className={styles.heading}>Top Tracks</h2>
 
         <ul className={styles.items}>
-          <li>
-            <a href="https://www.blink182.com/">
-              <img width="280" src="/images/dude-ranch.jpg" alt="Dude Ranch Album Cover" />
-              <p className={styles.itemTitle}>
-                Enthused
-              </p>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.blink182.com/">
-              <img width="280" src="/images/dude-ranch.jpg" alt="Dude Ranch Album Cover" />
-              <p className={styles.itemTitle}>
-                Enthused
-              </p>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.blink182.com/">
-              <img width="280" src="/images/dude-ranch.jpg" alt="Dude Ranch Album Cover" />
-              <p className={styles.itemTitle}>
-                Enthused
-              </p>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.blink182.com/">
-              <img width="280" src="/images/dude-ranch.jpg" alt="Dude Ranch Album Cover" />
-              <p className={styles.itemTitle}>
-                Enthused
-              </p>
-            </a>
-          </li>
+          {tracks.map(track => {
+            return (
+              <li key={track.id}>
+                <a href={track.external_urls.spotify}>
+                  <img width={track.album.images[0].width} height={track.album.images[0].height} src={track.album.images[0].url} alt="Track Album Photo" />
+                  <p className={styles.itemTitle}>
+                    { track.name }
+                  </p>
+                </a>
+              </li>
+            )
+          })}
         </ul>
       </Container>
     </Layout>
@@ -97,7 +55,25 @@ export default function Home() {
 
 export async function getStaticProps() {
   const secrets = await getSecrets();
+
+  const artistsResponse = await fetch(`https://api.spotify.com/v1/me/top/artists?limit=10`, {
+    headers: {
+      Authorization: `Bearer ${secrets.spotify.bearerToken}`,
+    }
+  });
+  const { items: artists } = await artistsResponse.json();
+
+  const tracksResponse = await fetch(`https://api.spotify.com/v1/me/top/tracks?limit=10`, {
+    headers: {
+      Authorization: `Bearer ${secrets.spotify.bearerToken}`,
+    }
+  });
+  const { items: tracks } = await tracksResponse.json();
+
   return {
-    props: {}
+    props: {
+      artists,
+      tracks
+    }
   }
 }
