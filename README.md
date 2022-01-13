@@ -2,8 +2,9 @@
 
 Demo for tutorial [How to Authenticate Spotify Web API Requests in Next.js with Netlify API Auth](https://spacejelly.dev/posts/how-to-authenticate-spotify-web-api-requests-in-next-js-with-netlify-api-auth/)
 
-* 📝 Article: https://spacejelly.dev/posts/how-to-authenticate-spotify-web-api-requests-in-next-js-with-netlify-api-auth/
-* 📺 YouTube: https://www.youtube.com/watch?v=J2Olfy6MoJ0
+📝 Article: https://spacejelly.dev/posts/how-to-authenticate-spotify-web-api-requests-in-next-js-with-netlify-api-auth/
+
+📺 YouTube: https://www.youtube.com/watch?v=J2Olfy6MoJ0
 
 ## More tutorials and walkthroughs
 * [Follow me on Twitter](https://twitter.com/colbyfayock)
