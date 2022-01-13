@@ -1,9 +1,11 @@
-# Demo Top Music Starter
+# Spotify Web API Authentication in Next.js with Netlify API Authentication
 
-## ⚡️ Quick Start
+Demo for tutorial [How to Authenticate Spotify Web API Requests in Next.js with Netlify API Auth](https://spacejelly.dev/posts/how-to-authenticate-spotify-web-api-requests-in-next-js-with-netlify-api-auth/)
 
-```bash
-yarn create next-app -e https://github.com/colbyfayock/demo-top-music-starter
-# or
-npx create-next-app -e https://github.com/colbyfayock/demo-top-music-starter
-```
+* 📝 Article: https://spacejelly.dev/posts/how-to-authenticate-spotify-web-api-requests-in-next-js-with-netlify-api-auth/
+* 📺 YouTube: https://www.youtube.com/watch?v=J2Olfy6MoJ0
+
+## More tutorials and walkthroughs
+* [Follow me on Twitter](https://twitter.com/colbyfayock)
+* [Subscribe on YouTube](https://www.youtube.com/colbyfayock)
+* [Sign Up for My Newsletter](https://colbyfayock.com/newsletter)
